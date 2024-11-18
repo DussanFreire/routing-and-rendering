@@ -1,19 +1,13 @@
-import Link from 'next/link';
+import { NewsList } from '@/components';
+import { DUMMY_NEWS } from '@/data/dummyNews';
 import React from 'react';
 
 function page({}) {
   return (
-    <ul style={{ color: 'white' }}>
-      <li>
-        <Link href='news/first-new/'>first-new</Link>
-      </li>
-      <li>
-        <Link href={'news/second-new'}>second-new</Link>
-      </li>
-      <li>
-        <Link href={'news/third-new'}>third-new</Link>
-      </li>
-    </ul>
+    <>
+      <h1>News page</h1>
+      <NewsList news={DUMMY_NEWS} />
+    </>
   );
 }
 

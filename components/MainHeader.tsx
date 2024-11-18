@@ -3,14 +3,18 @@ import React from 'react';
 
 function MainHeader() {
   return (
-    <ul style={{ display: 'flex', gap: '14px', color: 'white' }}>
-      <li>
-        <Link href='.'>Home</Link>
-      </li>
-      <li>
-        <Link href={'news'}>News</Link>
-      </li>
-    </ul>
+    <header id='main-header'>
+      <div id='logo'>
+        <Link href='/'>NextNews</Link>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <Link href='/news'>News</Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }
 
