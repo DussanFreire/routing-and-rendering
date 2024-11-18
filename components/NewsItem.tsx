@@ -8,7 +8,7 @@ type Props = {
 
 function NewsItem({ news }: Props) {
   return (
-    <Link href={`news/${news.slug}`}>
+    <Link href={`/news/${news.slug}`}>
       <img src={`/images/news/${news.image}`} alt={news.title} />
       <span>{news.title}</span>
     </Link>

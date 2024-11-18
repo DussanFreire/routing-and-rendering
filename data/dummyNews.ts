@@ -1,4 +1,6 @@
-export const DUMMY_NEWS = [
+import { NewsInterface } from '@/lib/interfaces';
+
+export const DUMMY_NEWS: Array<NewsInterface> = [
   {
     id: 'n1',
     slug: 'will-ai-replace-humans',

@@ -1,4 +1,5 @@
 import { DUMMY_NEWS } from '@/data/dummyNews';
+import { NewsInterface } from './interfaces';
 
 export function getAllNews() {
   return DUMMY_NEWS;
@@ -6,6 +7,43 @@ export function getAllNews() {
 
 export function getLatestNews() {
   return DUMMY_NEWS.slice(0, 3);
+}
+
+export function geyNewsByFilter(selectedYear: string, selectedMonth: string) {
+  let news: NewsInterface[] | null = null;
+
+  if (selectedYear && !selectedMonth) {
+    news = getNewsForYear(selectedYear);
+  }
+  if (selectedYear && selectedMonth) {
+    news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+  }
+
+  return news;
+}
+
+export function isAnInvalidDateFilter(
+  selectedYear: string,
+  selectedMonth: string
+) {
+  return (
+    (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
+    (selectedMonth &&
+      !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+  );
+}
+
+export function getLinksByFilter(selectedYear: string, selectedMonth: string) {
+  let links = getAvailableNewsYears();
+
+  if (selectedYear && !selectedMonth) {
+    links = getAvailableNewsMonths(selectedYear);
+  }
+  if (selectedYear && selectedMonth) {
+    links = [];
+  }
+
+  return links;
 }
 
 export function getAvailableNewsYears() {
@@ -18,7 +56,7 @@ export function getAvailableNewsYears() {
   }, []).sort((a, b) => b - a);
 }
 
-export function getAvailableNewsMonths(year: number) {
+export function getAvailableNewsMonths(year: string) {
   return DUMMY_NEWS.reduce((months: Array<number>, news) => {
     const newsYear = new Date(news.date).getFullYear();
     if (newsYear === +year) {
@@ -31,13 +69,13 @@ export function getAvailableNewsMonths(year: number) {
   }, []).sort((a, b) => b - a);
 }
 
-export function getNewsForYear(year: number) {
+export function getNewsForYear(year: string): NewsInterface[] {
   return DUMMY_NEWS.filter(
     (news) => new Date(news.date).getFullYear() === +year
   );
 }
 
-export function getNewsForYearAndMonth(year: number, month: number) {
+export function getNewsForYearAndMonth(year: string, month: string) {
   return DUMMY_NEWS.filter((news) => {
     const newsYear = new Date(news.date).getFullYear();
     const newsMonth = new Date(news.date).getMonth() + 1;
