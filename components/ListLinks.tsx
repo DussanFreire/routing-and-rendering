@@ -1,12 +1,14 @@
+import { getLinksByFilter } from '@/lib/news';
 import Link from 'next/link';
 import React from 'react';
 
-type Props = { links: number[]; selectedYear: string };
+type Props = { selectedMonth: string; selectedYear: string };
 
-function ListLinks({ links, selectedYear }: Props) {
+async function ListLinks({ selectedMonth, selectedYear }: Props) {
+  const filteredLinks = await getLinksByFilter(selectedYear, selectedMonth);
   return (
     <ul>
-      {links.map((link) => {
+      {filteredLinks.map((link) => {
         const href = selectedYear
           ? `/archive/${selectedYear}/${link}`
           : `/archive/${link}`;

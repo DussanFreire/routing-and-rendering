@@ -1,4 +1,4 @@
-import { DUMMY_NEWS } from '@/data/dummyNews';
+import { getNewsItem } from '@/lib/news';
 import { notFound } from 'next/navigation';
 import React from 'react';
 
@@ -8,9 +8,7 @@ type Props = {
 
 async function page({ params }: Props) {
   const { slug: newsItemSlug } = await params;
-  const newsItem = DUMMY_NEWS.find(
-    (newsItem) => newsItem.slug === newsItemSlug
-  )!;
+  const newsItem = await getNewsItem(newsItemSlug);
 
   if (!newsItem) notFound();
 

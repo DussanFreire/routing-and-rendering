@@ -1,14 +1,15 @@
 import { NewsList } from '@/components';
-import { DUMMY_NEWS } from '@/data/dummyNews';
-import React from 'react';
+import { getAllNews } from '@/lib/news';
 
-function page({}) {
+async function Page() {
+  const news = await getAllNews();
+
   return (
     <>
-      <h1>News page</h1>
-      <NewsList news={DUMMY_NEWS} />
+      <h1>News Page</h1>
+      {news && <NewsList news={news} />}
     </>
   );
 }
 
-export default page;
+export default Page;
