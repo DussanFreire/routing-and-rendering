@@ -1,10 +1,11 @@
 import logo from '@/assets/logo.jpg';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function HomePage() {
   return (
     <div id='home'>
-      <img src={logo.src} alt='A newspaper' />
+      <Image width={200} height={200} src={logo.src} alt='A newspaper' />
       <h1>A News Site For The Next Generation</h1>
       <p>
         Next News is here to deliver you all the latest news - concise &
